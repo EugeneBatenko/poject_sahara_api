@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    include header
+    h1= title
+    p Welcome to #{title}
+    ul
+        for quote in quotes
+            li
+                span= quote.name
+                span= quote.quote
