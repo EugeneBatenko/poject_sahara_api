@@ -4,8 +4,18 @@ block content
     include header
     h1= title
     p Welcome to #{title}
+
+    form#mainForm(action='/quotes' method='POST')
+        label Name
+            input(name='name' type='text' placeholder='Name')
+        label Quote
+            input(name='quote' type='text' placeholder='Quote')
+        button(type='submit') Send
+
     ul
         for quote in quotes
-            li
-                span= quote.name
-                span= quote.quote
+            li(id=quote.id)
+                p= quote.name
+                p= quote.quote
+                //button(onclick=`findByIdAndDelete("${quote.id}")`) Delete
+                //a(href=`/quotes/delete/${quote.id}`) Delete

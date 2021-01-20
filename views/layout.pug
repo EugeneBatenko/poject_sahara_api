@@ -3,7 +3,11 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    meta(name="turbolinks-root" content="/app")
-    script(src="dist/js/main.bundle.js" data-turbolinks-track="reload")
+
   body
     block content
+
+    script(src="/socket.io/socket.io.js")
+    script.
+      const socket = io();
+    script(src="/js/main.js")
