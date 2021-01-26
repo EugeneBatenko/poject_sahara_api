@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon app.js -e js,pug,scss",
-    "dev": "webpack --mode development"
+    "dev": "webpack --mode development",
+    "reboot": "rs"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

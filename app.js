@@ -130,10 +130,8 @@ mongoose.connect(`${process.env.URL}`, {
 
 //Routes
 const indexRouter = require('./routes/index');
-const quotesRouter = require('./routes/quotes');
 
 app.use('/', indexRouter);
-app.use('/quotes', quotesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
