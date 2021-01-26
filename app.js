@@ -15,9 +15,13 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
    cors: {
-      origin: '*',
+      origin: '*:*',
+      methods: ["GET", "POST"],
+      credentials: true
    }
 });
+
+// io.set( 'origins', '*localhost:3001' );
 
 //Database
 dotenv.config({

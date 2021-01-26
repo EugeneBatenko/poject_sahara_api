@@ -2,6 +2,7 @@
   "name": "longbox",
   "version": "0.0.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js -e js,pug,scss",
     "dev": "webpack --mode development",
@@ -23,5 +24,8 @@
     "pug": "3.0.0",
     "socket.io": "^3.0.5",
     "socket.io-client": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vercel/node": "^1.9.0"
   }
 }
