@@ -8,20 +8,19 @@ const sassMiddleware = require('node-sass-middleware');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const Quotes = require('./schema/index')
+const Quotes = require('../schema')
 
 const app = express();
 
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
    cors: {
-      origin: '*:*',
+      path: '/test',
+      origin: '*',
       methods: ["GET", "POST"],
       credentials: true
    }
 });
-
-// io.set( 'origins', '*localhost:3001' );
 
 //Database
 dotenv.config({
@@ -29,7 +28,7 @@ dotenv.config({
 });
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
@@ -37,15 +36,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors({credentials: true}))
 app.use(sassMiddleware({
-   src: path.join(__dirname, 'public'),
-   dest: path.join(__dirname, 'public'),
+   src: path.join(__dirname, '../public'),
+   dest: path.join(__dirname, '../public'),
    indentedSyntax: false, // true = .sass and false = .scss
    sourceMap: true
 }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json())
 
 mongoose.set('useCreateIndex', true);
@@ -133,9 +132,10 @@ mongoose.connect(`${process.env.URL}`, {
 
 
 //Routes
-const indexRouter = require('./routes/index');
+const indexRouter = require('../routes');
 
 app.use('/', indexRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -144,8 +144,8 @@ app.use((req, res, next) => {
 
 
 // Listen port
-http.listen(4000, () => {
-   console.log('listening on 4000');
+http.listen(3030, '0.0.0.0', () => {
+   console.log('listening on 3030');
 });
 
 module.exports = app;
